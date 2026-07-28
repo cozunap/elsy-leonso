@@ -1,0 +1,67 @@
+/* --- ASTRO STATIC LAYOUT FIXES --- */
+
+/* 1. Fix Header Flexbox Layout */
+.elementor-181 .elementor-element-4db8d45 {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+/* 2. Fix Logo Size */
+.elementor-181 .elementor-widget-theme-site-logo {
+    width: 250px !important;
+    flex-shrink: 0;
+}
+.elementor-181 .elementor-widget-theme-site-logo img {
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* 3. Fix Desktop Nav Menu (which lost its JS initialization) */
+.elementor-181 .elementor-nav-menu--main .elementor-nav-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 30px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.elementor-181 .elementor-nav-menu--main .elementor-nav-menu a {
+    color: #cc0000 !important; /* Elementor red accent */
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 14px !important;
+    text-decoration: none !important;
+    padding: 10px 0 !important;
+    transition: color 0.3s ease !important;
+}
+.elementor-181 .elementor-nav-menu--main .elementor-nav-menu a:hover {
+    color: #000000 !important;
+}
+
+/* Hide the toggle and dropdown on desktop */
+@media (min-width: 1025px) {
+    .elementor-181 .elementor-menu-toggle,
+    .elementor-181 .elementor-nav-menu--dropdown {
+        display: none !important;
+    }
+}
+
+/* Hide broken gtranslate shortcode */
+.elementor-widget-html {
+    display: none !important;
+}
+
+/* Ensure Jet Slider doesn't stack if JS fails */
+.jet-slider__items {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow: hidden !important;
+}
+.jet-slider__item {
+    min-width: 100% !important;
+}
