@@ -25,22 +25,35 @@
 .elementor-181 .elementor-nav-menu--main .elementor-nav-menu {
     display: flex !important;
     flex-direction: row !important;
-    gap: 30px !important;
+    gap: 0 !important;
     list-style: none !important;
     margin: 0 !important;
     padding: 0 !important;
 }
+.elementor-181 .elementor-nav-menu--main .elementor-nav-menu li {
+    display: flex;
+    align-items: center;
+}
+.elementor-181 .elementor-nav-menu--main .elementor-nav-menu li:not(:last-child)::after {
+    content: "";
+    height: 12px;
+    width: 1px;
+    background-color: #000;
+    margin: 0 15px;
+}
 .elementor-181 .elementor-nav-menu--main .elementor-nav-menu a {
-    color: #cc0000 !important; /* Elementor red accent */
-    font-weight: 600 !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
     text-transform: uppercase !important;
-    font-size: 14px !important;
+    font-size: 13px !important;
+    font-family: var(--e-global-typography-primary-font-family), sans-serif;
     text-decoration: none !important;
-    padding: 10px 0 !important;
+    padding: 5px 0 !important;
     transition: color 0.3s ease !important;
 }
-.elementor-181 .elementor-nav-menu--main .elementor-nav-menu a:hover {
-    color: #000000 !important;
+.elementor-181 .elementor-nav-menu--main .elementor-nav-menu a:hover,
+.elementor-181 .elementor-nav-menu--main .elementor-nav-menu a.elementor-item-active {
+    color: #1e73be !important; /* Blue active/hover color */
 }
 
 /* Hide the toggle and dropdown on desktop */
