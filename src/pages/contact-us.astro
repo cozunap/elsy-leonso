@@ -116,7 +116,44 @@ transition:background-color 1s ease !important;
 				<div class="elementor-element elementor-element-63ea93d e-con-full e-flex  e-con e-parent" data-id="63ea93d" data-element_type="container" data-e-type="container" data-settings="{&quot;animation&quot;:&quot;fadeInUp&quot;,&quot;jet_parallax_layout_list&quot;:[]}">
 				<div class="elementor-element elementor-element-4c84061 elementor-widget elementor-widget-jet-engine-maps-listing" data-id="4c84061" data-element_type="widget" data-e-type="widget" data-widget_type="jet-engine-maps-listing.default">
 				<div class="elementor-widget-container">
-					<div class="jet-map-listing jet-listing-grid--1486 google-provider" data-init="{&quot;zoomControl&quot;:true,&quot;fullscreenControl&quot;:true,&quot;streetViewControl&quot;:true,&quot;mapTypeControl&quot;:true}" data-markers="[{&quot;id&quot;:1485,&quot;latLang&quot;:{&quot;lat&quot;:&quot;39.0130588&quot;,&quot;lng&quot;:&quot;-76.9277095&quot;},&quot;label&quot;:false,&quot;custom_marker&quot;:false,&quot;geo_query_distance&quot;:-1}]" data-general="{&quot;api&quot;:&quot;\/wp-json\/jet-engine\/v2\/get-map-marker-info\/&quot;,&quot;restNonce&quot;:&quot;41062464fd&quot;,&quot;listingID&quot;:1486,&quot;source&quot;:&quot;posts&quot;,&quot;width&quot;:320,&quot;offset&quot;:40,&quot;clustererImg&quot;:&quot;\/assets\/plugins\/jet-engine\/includes\/modules\/maps-listings\/assets\/lib\/markerclustererplus\/img\/m&quot;,&quot;marker&quot;:{&quot;type&quot;:&quot;image&quot;,&quot;url&quot;:&quot;\/assets\/uploads\/2024\/08\/elsy-marker.svg&quot;,&quot;additional_classes&quot;:&quot;&quot;},&quot;autoCenter&quot;:true,&quot;maxZoom&quot;:18,&quot;minZoom&quot;:false,&quot;customCenter&quot;:false,&quot;customZoom&quot;:11,&quot;popupPreloader&quot;:false,&quot;querySeparator&quot;:&quot;?&quot;,&quot;markerClustering&quot;:true,&quot;customClusterImg&quot;:[],&quot;clusterMaxZoom&quot;:&quot;&quot;,&quot;clusterRadius&quot;:&quot;&quot;,&quot;popupOpenOn&quot;:&quot;click&quot;,&quot;centeringOnOpen&quot;:true,&quot;zoomOnOpen&quot;:false,&quot;advanced&quot;:{&quot;zoom_control&quot;:&quot;auto&quot;},&quot;user_location_enabled&quot;:false,&quot;user_location_marker&quot;:false,&quot;user_location_label&quot;:&quot;&quot;}" data-listing-source="posts" data-queried-id="19|WP_Post"></div>				</div>
+    <div id="custom-google-map" style="width: 100%; height: 85vh;"></div>
+    <script is:inline>
+        function initCustomMap() {
+            var location = { lat: 39.0130588, lng: -76.9277095 };
+            var map = new google.maps.Map(document.getElementById('custom-google-map'), {
+                zoom: 11,
+                center: location,
+                mapTypeControl: true,
+                streetViewControl: true,
+                fullscreenControl: true,
+                zoomControl: true
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                icon: {
+                    url: '/assets/uploads/2024/08/elsy-marker.svg',
+                    scaledSize: new google.maps.Size(150, 150),
+                    anchor: new google.maps.Point(75, 75)
+                }
+            });
+        }
+        
+        // Ensure Google Maps API is loaded, then init
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof google === 'object' && typeof google.maps === 'object') {
+                initCustomMap();
+            } else {
+                // If it loads later
+                window.onload = function() {
+                    if (typeof google === 'object' && typeof google.maps === 'object') {
+                        initCustomMap();
+                    }
+                };
+            }
+        });
+    </script>
+</div>
 				</div>
 				</div>
 				</div>
