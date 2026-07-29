@@ -86,6 +86,19 @@
 
 <script is:inline>
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // Force navigation on all nav links (bypass Elementor intercept)
+    const navLinks = document.querySelectorAll('.elementor-nav-menu a.elementor-item');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (this.href && !this.href.includes('#') && this.getAttribute('target') !== '_blank') {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href = this.href;
+            }
+        }, true); // use capture phase to intercept before Elementor
+    });
+
     const toggle = document.querySelector('.elementor-menu-toggle');
     const dropdown = document.querySelector('.elementor-nav-menu--dropdown');
     
