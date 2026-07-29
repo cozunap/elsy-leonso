@@ -85,39 +85,50 @@
 				</header>
 
 <script is:inline>
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Force navigation on all nav links (bypass Elementor intercept)
-    const navLinks = document.querySelectorAll('.elementor-nav-menu a.elementor-item');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (this.href && !this.href.includes('#') && this.getAttribute('target') !== '_blank') {
-                e.preventDefault();
-                e.stopPropagation();
-                window.location.href = this.href;
-            }
-        }, true); // use capture phase to intercept before Elementor
-    });
-
-    const toggle = document.querySelector('.elementor-menu-toggle');
-    const dropdown = document.querySelector('.elementor-nav-menu--dropdown');
-    
-    if (toggle && dropdown) {
-        toggle.addEventListener('click', function(e) {
+(function() {
+    // Use event delegation at document level — fires before any Elementor handler
+    document.addEventListener('click', function(e) {
+        var link = e.target.closest('.elementor-nav-menu a.elementor-item');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (href && href !== '#' && href !== 'javascript:void(0)') {
             e.preventDefault();
-            const isActive = toggle.classList.contains('elementor-active');
-            
-            if (isActive) {
-                toggle.classList.remove('elementor-active');
-                toggle.setAttribute('aria-expanded', 'false');
-                dropdown.style.display = 'none';
+            e.stopImmediatePropagation();
+            window.location.href = href;
+        }
+    }, true); // capture phase — runs before bubbling/Elementor
+
+    // Mobile burger toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        var toggle = document.querySelector('.elementor-menu-toggle');
+        var dropdown = document.querySelector('.elementor-nav-menu--dropdown');
+        if (toggle && dropdown) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                var isActive = toggle.classList.contains('elementor-active');
+                if (isActive) {
+                    toggle.classList.remove('elementor-active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    dropdown.style.display = 'none';
+                } else {
+                    toggle.classList.add('elementor-active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    dropdown.style.display = 'block';
+                }
+            });
+        }
+
+        // Highlight the correct active link based on the current URL
+        var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+        document.querySelectorAll('.elementor-nav-menu a.elementor-item').forEach(function(a) {
+            var linkPath = a.getAttribute('href').replace(/\/$/, '') || '/';
+            if (currentPath === linkPath) {
+                a.classList.add('elementor-item-active');
             } else {
-                toggle.classList.add('elementor-active');
-                toggle.setAttribute('aria-expanded', 'true');
-                dropdown.style.display = 'block';
-                dropdown.style.marginTop = '15px'; // Adjust for spacing
+                a.classList.remove('elementor-item-active');
             }
         });
-    }
-});
+    });
+})();
 </script>
+
