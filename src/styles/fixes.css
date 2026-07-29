@@ -81,3 +81,15 @@
 
 /* Hide Slider Pagination Dots */
 .sp-buttons, .sp-pagination, .jet-slider__pagination { display: none !important; }
+
+/* Scroll Reveal Premium Animations */
+.reveal-anim {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    will-change: opacity, transform;
+}
+.reveal-anim.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}

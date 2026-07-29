@@ -21,3 +21,41 @@
 					</div>
 				</div>
 				</footer>
+
+<script is:inline>
+document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.05, rootMargin: "0px 0px -40px 0px" });
+
+    // Select all widgets but filter out header, footer, and sliders
+    const widgets = document.querySelectorAll('.elementor-widget, .e-con > .e-con-inner');
+    const targets = Array.from(widgets).filter(el => {
+        return !el.closest('header') && !el.closest('footer') && !el.closest('.jet-slider');
+    });
+    
+    let delay = 0;
+    let lastParent = null;
+
+    targets.forEach(target => {
+        target.classList.add('reveal-anim');
+        
+        // Staggered animation for elements in the same container
+        if (target.parentElement === lastParent) {
+            delay += 0.1;
+            if (delay > 0.5) delay = 0.5; // Cap delay
+        } else {
+            delay = 0;
+            lastParent = target.parentElement;
+        }
+        target.style.transitionDelay = delay + 's';
+        
+        observer.observe(target);
+    });
+});
+</script>
