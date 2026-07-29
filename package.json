@@ -12,9 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.1.5",
-    "tailwindcss": "^4.3.3"
+    "astro": "^7.1.5"
   },
   "devDependencies": {
     "@emnapi/core": "^2.0.0-alpha.3",
