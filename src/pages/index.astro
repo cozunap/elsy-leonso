@@ -1051,7 +1051,51 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"4.2.1","is_static":false,"experimentalFeatures":{"e_optimized_css_loading":true,"e_font_icon_svg":true,"additional_custom_breakpoints":true,"e_swiper_latest":true,"theme_builder_v2":true,"home_screen":true,"ai-layout":true,"landing-pages":true},"urls":{"assets":"\/assets\/plugins\/elementor\/assets\/","ajaxurl":"\/wp-admin\/admin-ajax.php"},"nonces":{"floatingButtonsClickTracking":"34c0e3ebce"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":8,"title":"Elsy%20Leonso","excerpt":"","featuredImage":false}};
 var ElementorProFrontendConfig = {"ajaxurl":"\/wp-admin\/admin-ajax.php","nonce":"b644a18189","urls":{"assets":"\/assets\/plugins\/elementor-pro\/assets\/","rest":"\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":true},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en_CA","app_id":""},"lottie":{"defaultAnimationUrl":"\/assets\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
 </script>
+<script is:inline>
+// Direct SliderPro init — bypasses Elementor's hook system which never fires in static builds
+(function waitForSliderPro() {
+    if (typeof jQuery === 'undefined' || typeof jQuery.fn.sliderPro === 'undefined') {
+        return setTimeout(waitForSliderPro, 50);
+    }
+    jQuery('.jet-slider').each(function() {
+        var $slider = jQuery(this);
+        if ($slider.data('sp-initialized')) return;
+        $slider.data('sp-initialized', true);
+
+        var rawSettings = $slider.attr('data-settings') || '{}';
+        // data-settings uses HTML entities — decode them
+        var decoded = rawSettings
+            .replace(/&quot;/g, '"')
+            .replace(/&amp;/g, '&')
+            .replace(/&#039;/g, "'");
+        var s;
+        try { s = JSON.parse(decoded); } catch(e) { s = {}; }
+
+        $slider.find('.slider-pro').sliderPro({
+            width:          '100%',
+            height:         s.sliderHeight || 1,
+            autoplay:       s.sliderAutoplay !== false,
+            autoplayDelay:  s.sliderAutoplayDelay || 5000,
+            autoplayOnHover: s.sliderAutoplayOnHover || 'pause',
+            loop:           s.sliderLoop !== false,
+            fade:           s.sliderFadeMode || false,
+            slideDistance:  s.slideDistance || 0,
+            slideDuration:  s.slideDuration || 700,
+            arrows:         s.sliderNavigation || false,
+            pagination:     s.sliderPagination || false,
+            touchSwipe:     s.touchswipe !== false,
+            shuffle:        s.sliderShuffle || false,
+            rightToLeft:    s.rightToLeft || false,
+            forceSize:      'fullWidth',
+            imageScaleMode: s.imageScaleMode || 'cover',
+            allowScaleUp:   true,
+            responsive:     true
+        });
+    });
+})();
+</script>
 </body>
+
 
 </html>
 
