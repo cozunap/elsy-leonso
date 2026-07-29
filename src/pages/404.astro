@@ -1,0 +1,95 @@
+---
+import '../styles/fixes.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- PWA & Theme -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#c8a96e">
+    <!-- Performance Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- OpenGraph / Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/uploads/2025/02/logo.webp">
+    <meta property="og:site_name" content="Elsy Leonso Insurance, Tag and Title Maryland">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="/assets/uploads/2025/02/logo.webp">
+
+    <title>Page Not Found – Elsy Leonso Insurance</title>
+    
+    <style>
+        .error-404-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 40px 20px;
+            font-family: "Poppins", sans-serif;
+            background-color: #f4f3f3;
+        }
+        .error-404-title {
+            font-size: 120px;
+            font-weight: 900;
+            color: #0085AD; /* site primary */
+            margin: 0;
+            line-height: 1;
+        }
+        .error-404-subtitle {
+            font-size: 32px;
+            font-weight: 700;
+            color: #201F1F;
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+        .error-404-text {
+            font-size: 16px;
+            color: #555;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+        .error-404-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: #0085AD;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: 30px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .error-404-btn:hover {
+            background-color: #005670; /* site accent */
+            transform: translateY(-3px);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="error404 elementor-default elementor-kit-10">
+    
+    <Header />
+
+    <main id="content" class="site-main">
+        <section class="error-404-container">
+            <h1 class="error-404-title">404</h1>
+            <h2 class="error-404-subtitle">Oops! Page Not Found</h2>
+            <p class="error-404-text">It looks like nothing was found at this location. Maybe try returning to the homepage to find what you're looking for.</p>
+            <a href="/" class="error-404-btn">Return to Home</a>
+        </section>
+    </main>
+
+    <Footer />
+
+</body>
+</html>

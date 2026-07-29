@@ -1,0 +1,22 @@
+{
+    "name": "Elsy Leonso Insurance",
+    "short_name": "Elsy Leonso",
+    "description": "Reputable insurance provider offering a wide range of coverage solutions.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#c8a96e",
+    "icons": [
+        {
+            "src": "/assets/uploads/2025/02/logo-150x150.webp",
+            "sizes": "150x150",
+            "type": "image/webp"
+        },
+        {
+            "src": "/assets/uploads/2025/02/logo.webp",
+            "sizes": "1000x573",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        }
+    ]
+}
