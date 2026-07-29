@@ -167,197 +167,175 @@ transition:background-color 1s ease !important;
 					<div class="e-con-inner">
 				<!-- ===== CUSTOM HERO SLIDER ===== -->
 <style is:inline>
+/* ---- Hero Slider ---- */
 #elsy-hero-slider {
     position: relative;
     width: 100%;
-    height: 75vh;
     overflow: hidden;
-    background: #000;
+    background: #fff;
 }
 .elsy-slide {
-    position: absolute;
-    inset: 0;
-    display: flex;
+    display: none;
+    width: 100%;
+    min-height: 380px;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 6%;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    pointer-events: none;
-    z-index: 0;
+    background: #fff;
+    padding: 40px 6%;
+    box-sizing: border-box;
 }
 .elsy-slide.active {
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 1;
+    display: flex;
 }
-.elsy-slide-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    z-index: 0;
-}
-.elsy-slide-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
-}
-.elsy-slide-content {
-    position: relative;
-    z-index: 2;
-    max-width: 480px;
-    color: #fff;
-}
-.elsy-slide.active .elsy-slide-content {
-    animation: slideIn 0.65s ease forwards;
-}
-@keyframes slideIn {
-    from { transform: translateX(-30px); opacity: 0; }
-    to   { transform: translateX(0);     opacity: 1; }
-}
-.elsy-slide-content h2 {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1.1;
-    margin: 0 0 16px;
-    color: #fff;
-}
-.elsy-slide-content p {
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
-    font-weight: 400;
-    line-height: 1.5;
-    margin: 0 0 28px;
-    color: rgba(255,255,255,0.9);
-}
-.elsy-slide-btn {
-    display: inline-block;
-    padding: 12px 32px;
-    border: 1px solid #fff;
-    border-radius: 25px;
-    color: #fff;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: background 0.3s, color 0.3s, border-color 0.3s;
-}
-.elsy-slide-btn:hover {
-    background: var(--e-global-color-primary, #c8a96e);
-    border-color: var(--e-global-color-primary, #c8a96e);
-    color: #fff;
-}
+/* Slide 1 & 3: image left, text right */
+.elsy-slide.img-left  { flex-direction: row; }
+/* Slide 2 & 4: text left, image right */
+.elsy-slide.img-right { flex-direction: row-reverse; }
+
 .elsy-slide-img {
-    position: relative;
-    z-index: 2;
-    max-width: 45%;
-    flex-shrink: 0;
+    flex: 0 0 48%;
     display: flex;
     align-items: center;
     justify-content: center;
+    max-height: 340px;
+    overflow: hidden;
 }
 .elsy-slide-img img {
-    max-height: 55vh;
     max-width: 100%;
+    max-height: 320px;
     object-fit: contain;
-    filter: drop-shadow(0 8px 32px rgba(0,0,0,0.4));
+    display: block;
 }
+.elsy-slide-content {
+    flex: 0 0 48%;
+    padding: 0 20px;
+    text-align: center;
+}
+.elsy-slide-content h2 {
+    font-family: 'Raleway', 'Arial Black', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin: 0 0 14px;
+    color: #111;
+    letter-spacing: -0.5px;
+}
+.elsy-slide-content p {
+    font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+    font-weight: 400;
+    line-height: 1.55;
+    color: #333;
+    margin: 0 0 24px;
+}
+.elsy-slide-btn {
+    display: inline-block;
+    padding: 11px 30px;
+    border: 2px solid #111;
+    border-radius: 50px;
+    color: #111;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    background: transparent;
+    transition: background 0.25s, color 0.25s;
+    letter-spacing: 0.02em;
+}
+.elsy-slide-btn:hover {
+    background: #111;
+    color: #fff;
+}
+/* Dots */
 .elsy-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
+    justify-content: center;
     gap: 8px;
-    z-index: 10;
+    padding: 10px 0 18px;
+    background: #fff;
 }
 .elsy-dot {
-    width: 10px; height: 10px;
+    width: 9px; height: 9px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.45);
-    border: 1px solid rgba(255,255,255,0.6);
+    background: #ccc;
+    border: none;
     cursor: pointer;
+    padding: 0;
     transition: background 0.3s, transform 0.3s;
 }
 .elsy-dot.active {
-    background: #fff;
-    transform: scale(1.25);
+    background: #111;
+    transform: scale(1.3);
 }
-@media (max-width: 768px) {
-    .elsy-slide {
+/* Mobile */
+@media (max-width: 700px) {
+    .elsy-slide.img-left,
+    .elsy-slide.img-right {
         flex-direction: column;
-        justify-content: center;
-        padding: 0 5%;
-        text-align: center;
     }
-    .elsy-slide-img { max-width: 70%; margin-top: 20px; }
-    .elsy-slide-content { max-width: 100%; }
+    .elsy-slide-img, .elsy-slide-content {
+        flex: none;
+        width: 100%;
+        padding: 0;
+    }
+    .elsy-slide { padding: 30px 5%; min-height: unset; }
+    .elsy-slide-img { max-height: 220px; margin-bottom: 18px; }
 }
 </style>
 
 <div id="elsy-hero-slider">
 
-    <!-- Slide 1: Car Insurance -->
-    <div class="elsy-slide active">
-        <div class="elsy-slide-bg" style="background-image:url('/assets/uploads/2024/02/Range-Rover.webp');"></div>
-        <div class="elsy-slide-content">
-            <h2>Car<br />Insurance</h2>
-            <p>Choose from our options and discounts, then get a car insurance quote to see how you'll save!</p>
-            <a class="elsy-slide-btn" href="/insurance/">Get a Quote!</a>
-        </div>
+    <!-- Slide 1: Car Insurance | image LEFT, text RIGHT -->
+    <div class="elsy-slide img-left active">
         <div class="elsy-slide-img">
             <img src="/assets/uploads/2024/02/Range-Rover.webp" alt="Car Insurance" width="700" height="393" loading="eager">
         </div>
+        <div class="elsy-slide-content">
+            <h2>Car<br />Insurance</h2>
+            <p>Choose from our options and discounts, then get a car insurance quote to see how you'll save!</p>
+            <a class="elsy-slide-btn" href="/insurance/">Get a quote!</a>
+        </div>
     </div>
 
-    <!-- Slide 2: Home Insurance -->
-    <div class="elsy-slide">
-        <div class="elsy-slide-bg" style="background-image:url('/assets/uploads/2024/02/house.webp');"></div>
-        <div class="elsy-slide-content">
-            <h2>Home<br />Insurance</h2>
-            <p>Are you looking to get insurance coverage to protect your home?</p>
-            <a class="elsy-slide-btn" href="/insurance/">Get a Quote!</a>
-        </div>
+    <!-- Slide 2: Home Insurance | text LEFT, image RIGHT -->
+    <div class="elsy-slide img-right">
         <div class="elsy-slide-img">
             <img src="/assets/uploads/2024/02/house.webp" alt="Home Insurance" width="720" height="304" loading="lazy">
         </div>
+        <div class="elsy-slide-content">
+            <h2>Home<br />Insurance</h2>
+            <p>Are you looking to get insurance coverage to protect your home?</p>
+            <a class="elsy-slide-btn" href="/insurance/">Get a quote!</a>
+        </div>
     </div>
 
-    <!-- Slide 3: Contractor Insurance -->
-    <div class="elsy-slide">
-        <div class="elsy-slide-bg" style="background-image:url('/assets/uploads/2024/02/Contractor-1.webp');"></div>
-        <div class="elsy-slide-content">
-            <h2>Contractor<br />Insurance</h2>
-            <p>We offer comprehensive contractor insurance coverage to protect your business.</p>
-            <a class="elsy-slide-btn" href="/insurance/">Get a Quote!</a>
-        </div>
+    <!-- Slide 3: Contractor Insurance | image LEFT, text RIGHT -->
+    <div class="elsy-slide img-left">
         <div class="elsy-slide-img">
             <img src="/assets/uploads/2024/02/Contractor-1.webp" alt="Contractor Insurance" width="810" height="932" loading="lazy">
         </div>
+        <div class="elsy-slide-content">
+            <h2>Contractor<br />Insurance</h2>
+            <p>We offer comprehensive contractor insurance coverage to protect your business.</p>
+            <a class="elsy-slide-btn" href="/insurance/">Get a quote!</a>
+        </div>
     </div>
 
-    <!-- Slide 4: Commercial Vehicle -->
-    <div class="elsy-slide">
-        <div class="elsy-slide-bg" style="background-image:url('/assets/uploads/2024/02/commercial.webp');"></div>
+    <!-- Slide 4: Commercial Vehicle | text LEFT, image RIGHT -->
+    <div class="elsy-slide img-right">
+        <div class="elsy-slide-img">
+            <img src="/assets/uploads/2024/02/commercial.webp" alt="Commercial Vehicle" width="700" height="492" loading="lazy">
+        </div>
         <div class="elsy-slide-content">
             <h2>Commercial<br />Vehicle</h2>
             <p>Protect Your Assets, Staff, and Passengers from Unforeseen Road Accidents.</p>
-            <a class="elsy-slide-btn" href="/insurance/">Get a Quote!</a>
-        </div>
-        <div class="elsy-slide-img">
-            <img src="/assets/uploads/2024/02/commercial.webp" alt="Commercial Vehicle Insurance" width="700" height="492" loading="lazy">
+            <a class="elsy-slide-btn" href="/insurance/">Get a quote!</a>
         </div>
     </div>
 
-    <!-- Dot navigation -->
     <div class="elsy-dots">
-        <div class="elsy-dot active" data-index="0"></div>
-        <div class="elsy-dot" data-index="1"></div>
-        <div class="elsy-dot" data-index="2"></div>
-        <div class="elsy-dot" data-index="3"></div>
+        <button class="elsy-dot active" data-index="0" aria-label="Slide 1"></button>
+        <button class="elsy-dot" data-index="1" aria-label="Slide 2"></button>
+        <button class="elsy-dot" data-index="2" aria-label="Slide 3"></button>
+        <button class="elsy-dot" data-index="3" aria-label="Slide 4"></button>
     </div>
 </div>
 
@@ -377,11 +355,9 @@ transition:background-color 1s ease !important;
         dots[current].classList.add('active');
     }
 
-    function next() { goTo(current + 1); }
-
     function startTimer() {
         clearInterval(timer);
-        timer = setInterval(next, 5000);
+        timer = setInterval(function() { goTo(current + 1); }, 5000);
     }
 
     dots.forEach(function(dot) {
@@ -399,7 +375,6 @@ transition:background-color 1s ease !important;
         var diff = touchStartX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 50) { goTo(current + (diff > 0 ? 1 : -1)); startTimer(); }
     }, {passive: true});
-
     slider.addEventListener('mouseenter', function() { clearInterval(timer); });
     slider.addEventListener('mouseleave', startTimer);
 
