@@ -78,3 +78,6 @@
 .jet-slider__item {
     min-width: 100% !important;
 }
+
+/* Hide Slider Pagination Dots */
+.sp-buttons, .sp-pagination, .jet-slider__pagination { display: none !important; }
