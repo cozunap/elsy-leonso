@@ -468,13 +468,85 @@ ELSY LEONSO INS AGENCY LLC</h2>				</div>
 				</div>
 		<div class="elementor-element elementor-element-7955071 e-flex e-con-boxed  e-con e-parent" data-id="7955071" data-element_type="container" data-e-type="container" data-settings="{&quot;jet_parallax_layout_list&quot;:[],&quot;animation&quot;:&quot;fadeInUp&quot;}">
 					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-58e291c elementor-widget elementor-widget-image-carousel" data-id="58e291c" data-element_type="widget" data-e-type="widget" data-settings="{&quot;slides_to_show&quot;:&quot;5&quot;,&quot;slides_to_scroll&quot;:&quot;1&quot;,&quot;navigation&quot;:&quot;none&quot;,&quot;speed&quot;:700,&quot;image_spacing_custom&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:33,&quot;sizes&quot;:[]},&quot;autoplay&quot;:&quot;yes&quot;,&quot;autoplay_speed&quot;:5000,&quot;infinite&quot;:&quot;yes&quot;,&quot;image_spacing_custom_widescreen&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_spacing_custom_laptop&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_spacing_custom_tablet_extra&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_spacing_custom_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_spacing_custom_mobile_extra&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_spacing_custom_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="image-carousel.default">
+				<div class="elementor-element elementor-element-58e291c elementor-widget" data-id="58e291c" data-element_type="widget">
 				<div class="elementor-widget-container">
-							<div class="elementor-image-carousel-wrapper swiper" role="region" aria-roledescription="carousel" aria-label="Image Carousel" dir="ltr">
-			<div class="elementor-image-carousel swiper-wrapper swiper-image-stretch" aria-live="off">
-								<div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="1 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/maryland-lins.webp" alt="Maryland Lins"></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="2 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/Farmers-of-Salem.webp" alt="Farmers Of Salem"></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="3 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/Forge-Appetite.webp" alt="Forge Appetite"></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="4 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/Frederick-Mutual.webp" alt="Frederick Mutual"></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="5 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/GAINSCO-Auto.webp" alt="Gainsco Auto"></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="6 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/GEICO-Logo.webp" alt="Geico Logo"></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="7 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/images.webp" alt="Images"></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="8 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/logo.webp" alt="Logo"></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="9 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/foremoststar_logo.svg" alt="Foremoststar Logo"></figure></div><div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="10 of 10"><figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="/assets/uploads/2025/02/National-General.webp" alt="National General"></figure></div>			</div>
-									</div>
-						</div>
+<style>
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    position: relative;
+}
+.marquee-container::before, .marquee-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 2;
+    pointer-events: none;
+}
+.marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+.marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    animation: marquee-scroll 30s linear infinite;
+    padding-right: 80px; 
+}
+.marquee-track img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+.marquee-track img:hover {
+    transform: scale(1.05);
+}
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+@media (max-width: 768px) {
+    .marquee-track img { height: 45px; }
+    .marquee-track { gap: 40px; padding-right: 40px; }
+}
+</style>
+<div class="marquee-container">
+    <div class="marquee-track">
+        <!-- Original set -->
+        <img loading="lazy" src="/assets/uploads/2025/02/maryland-lins.webp" alt="Maryland Auto Insurance">
+        <img loading="lazy" src="/assets/uploads/2025/02/Farmers-of-Salem.webp" alt="Farmers Of Salem">
+        <img loading="lazy" src="/assets/uploads/2025/02/Forge-Appetite.webp" alt="Forge Appetite">
+        <img loading="lazy" src="/assets/uploads/2025/02/Frederick-Mutual.webp" alt="Frederick Mutual">
+        <img loading="lazy" src="/assets/uploads/2025/02/GAINSCO-Auto.webp" alt="Gainsco Auto">
+        <img loading="lazy" src="/assets/uploads/2025/02/GEICO-Logo.webp" alt="Geico Logo">
+        <img loading="lazy" src="/assets/uploads/2025/02/foremoststar_logo.svg" alt="Foremoststar Logo">
+        <img loading="lazy" src="/assets/uploads/2025/02/National-General.webp" alt="National General">
+        
+        <!-- Duplicated set for seamless loop -->
+        <img loading="lazy" src="/assets/uploads/2025/02/maryland-lins.webp" alt="Maryland Auto Insurance">
+        <img loading="lazy" src="/assets/uploads/2025/02/Farmers-of-Salem.webp" alt="Farmers Of Salem">
+        <img loading="lazy" src="/assets/uploads/2025/02/Forge-Appetite.webp" alt="Forge Appetite">
+        <img loading="lazy" src="/assets/uploads/2025/02/Frederick-Mutual.webp" alt="Frederick Mutual">
+        <img loading="lazy" src="/assets/uploads/2025/02/GAINSCO-Auto.webp" alt="Gainsco Auto">
+        <img loading="lazy" src="/assets/uploads/2025/02/GEICO-Logo.webp" alt="Geico Logo">
+        <img loading="lazy" src="/assets/uploads/2025/02/foremoststar_logo.svg" alt="Foremoststar Logo">
+        <img loading="lazy" src="/assets/uploads/2025/02/National-General.webp" alt="National General">
+    </div>
+</div>
 				</div>
 					</div>
 				</div>
