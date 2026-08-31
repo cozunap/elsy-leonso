@@ -190,9 +190,9 @@ a:not(.elementor-button):hover {
    GLOBAL RESPONSIVENESS FIXES
    ========================================================================== */
 
-/* Prevent Horizontal Scroll */
+/* Prevent Horizontal Scroll but allow Sticky */
 html, body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     width: 100% !important;
     max-width: 100vw;
 }

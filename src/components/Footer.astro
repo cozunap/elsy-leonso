@@ -81,3 +81,59 @@ document.addEventListener("DOMContentLoaded", function() {
         <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path>
     </svg>
 </div>
+
+<script is:inline>
+document.addEventListener("DOMContentLoaded", function() {
+    // Form Activation Logic (Native Mailto)
+    const forms = document.querySelectorAll('.elementor-form');
+    
+    forms.forEach(form => {
+        // Prevent default submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Gather all form data
+            const formData = new FormData(form);
+            let bodyText = "New Form Submission:\n\n";
+            
+            for (let [name, value] of formData.entries()) {
+                // Ignore hidden system fields
+                if (name.startsWith('post_id') || name.startsWith('form_id') || name.startsWith('queried_id') || name.startsWith('referer_title') || !value) {
+                    continue;
+                }
+                // Format the name nicely
+                let cleanName = name.replace('form_fields[', '').replace(']', '').replace('_', ' ');
+                bodyText += `${cleanName.toUpperCase()}: ${value}\n`;
+            }
+            
+            // Get form title if available
+            let formTitle = "Website Form Submission";
+            const heading = form.closest('.e-con-inner').querySelector('.elementor-heading-title');
+            if (heading) {
+                formTitle = heading.innerText.trim();
+            } else if (form.getAttribute('name')) {
+                formTitle = form.getAttribute('name');
+            }
+            
+            // Construct mailto link
+            const emailTo = "elsyleonso@gmail.com"; 
+            const mailtoLink = `mailto:${emailTo}?subject=${encodeURIComponent(formTitle)}&body=${encodeURIComponent(bodyText)}`;
+            
+            // Trigger email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            let successMsg = form.querySelector('.form-success-msg');
+            if (!successMsg) {
+                successMsg = document.createElement('div');
+                successMsg.className = 'form-success-msg';
+                successMsg.style.color = 'green';
+                successMsg.style.marginTop = '15px';
+                successMsg.style.fontWeight = 'bold';
+                successMsg.innerText = "Opening your email client to send the request...";
+                form.appendChild(successMsg);
+            }
+        });
+    });
+});
+</script>
