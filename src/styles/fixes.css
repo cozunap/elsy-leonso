@@ -302,3 +302,20 @@ img, svg, video, iframe, canvas {
 #custom-form-modal-body .e-con-inner {
     padding: 0 !important;
 }
+
+/* Force modal content visibility to fix black form issue */
+#custom-form-modal-body * {
+    color: #000 !important;
+}
+#custom-form-modal-body .elementor-field-textual {
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 1px solid #ccc !important;
+}
+#custom-form-modal-body .elementor-button {
+    background-color: #0d1f3c !important;
+    color: #fff !important;
+}
+#custom-form-modal-body {
+    background-color: #fff !important;
+}
