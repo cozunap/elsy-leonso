@@ -490,3 +490,16 @@ li,
     height: calc(100vh - 90px) !important;
     min-height: calc(100vh - 90px) !important;
 }
+
+#custom-map-popup::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+    display: block;
+    width: 0;
+}

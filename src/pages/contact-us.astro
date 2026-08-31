@@ -130,9 +130,31 @@ transition:background-color 1s ease !important;
 				<div class="elementor-element elementor-element-4c84061 elementor-widget elementor-widget-jet-engine-maps-listing" data-id="4c84061" data-element_type="widget" data-e-type="widget" data-widget_type="jet-engine-maps-listing.default">
 				<div class="elementor-widget-container">
     <div style="width: 100%; height: calc(100vh - 90px); overflow: hidden; position: relative;">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -100%); pointer-events: none; z-index: 10;"><img src="/assets/uploads/elsy-marker.svg" style="width: 75px; height: auto; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));"></div>
+        <!-- Interactive Marker Container -->
+        <div id="custom-map-marker-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -100%); z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;">
+            
+            <!-- Popup Info Window -->
+            <div id="custom-map-popup" style="display: none; flex-direction: column; align-items: center; justify-content: center; width: 280px; height: 280px; background: white; border-radius: 50%; box-shadow: 0 15px 35px rgba(0,0,0,0.2); text-align: center; padding: 20px; box-sizing: border-box; margin-bottom: 10px; position: absolute; bottom: 100%; transform: translateY(10px);">
+                <div style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 22px; line-height: 1.1; color: #222; text-transform: uppercase;">
+                    Elsy<br>Leonso<br>Insurance
+                </div>
+                <div style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; color: #0085AD; margin: 15px 0;">
+                    <a href="tel:3012134361" style="color: inherit; text-decoration: none;">301 213 4361</a>
+                </div>
+                <div style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; line-height: 1.3; color: #222;">
+                    9651 Baltimore Ave,<br>College Park, MD<br>20740
+                </div>
+                <a href="https://www.google.com/maps/dir//9651+Baltimore+Ave,+College+Park,+MD+20740" target="_blank" style="margin-top: 15px; display: inline-block; background: #1a1a1a; color: #fff; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; padding: 10px 25px; border-radius: 20px; text-decoration: none; text-transform: uppercase; transition: background 0.3s;">
+                    Direction
+                </a>
+            </div>
+
+            <!-- The SVG Pin -->
+            <img id="custom-map-marker" src="/assets/uploads/elsy-marker.svg" style="width: 75px; height: auto; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3)); cursor: pointer; position: relative; z-index: 11;">
+        </div>
+
         <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3100.864319690184!2d-76.93400652438848!3d38.99654894762024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7c15291d37a8b%3A0xb5b796d11f7c8d92!2s8651%20Baltimore%20Ave%20%23101%2C%20College%20Park%2C%20MD%2020740!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+            src="https://maps.google.com/maps?q=9651%20Baltimore%20Ave,%20College%20Park,%20MD%2020740&t=&z=15&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
             height="100%" 
             style="border:0;" 
@@ -140,6 +162,8 @@ transition:background-color 1s ease !important;
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
+
+
     </div>
 				</div>
 				</div>
@@ -313,6 +337,28 @@ var jetElements = {"ajaxurl":"\/wp-admin\/admin-ajax.php","isMobile":"false","te
 var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"4.2.1","is_static":false,"experimentalFeatures":{"e_optimized_css_loading":true,"e_font_icon_svg":true,"additional_custom_breakpoints":true,"e_swiper_latest":true,"theme_builder_v2":true,"home_screen":true,"ai-layout":true,"landing-pages":true},"urls":{"assets":"\/assets\/plugins\/elementor\/assets\/","ajaxurl":"\/wp-admin\/admin-ajax.php"},"nonces":{"floatingButtonsClickTracking":"34c0e3ebce"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":8,"title":"Elsy%20Leonso","excerpt":"","featuredImage":false}};
 var ElementorProFrontendConfig = {"ajaxurl":"\/wp-admin\/admin-ajax.php","nonce":"b644a18189","urls":{"assets":"\/assets\/plugins\/elementor-pro\/assets\/","rest":"\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":true},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en_CA","app_id":""},"lottie":{"defaultAnimationUrl":"\/assets\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const marker = document.getElementById("custom-map-marker");
+        const popup = document.getElementById("custom-map-popup");
+        if(marker && popup) {
+            marker.addEventListener("click", () => {
+                if (popup.style.display === "none" || popup.style.display === "") {
+                    popup.style.display = "flex";
+                } else {
+                    popup.style.display = "none";
+                }
+            });
+            // Close popup if clicking outside
+            document.addEventListener("click", (e) => {
+                if (!marker.contains(e.target) && !popup.contains(e.target)) {
+                    popup.style.display = "none";
+                }
+            });
+        }
+    });
+</script>
+
 </body>
 
 </html>
