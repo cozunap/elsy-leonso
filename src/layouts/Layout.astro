@@ -748,6 +748,25 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.querySelector(".jet-slider__items");
     const slides = document.querySelectorAll(".jet-slider__item");
+    
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector(".elementor-menu-toggle");
+    const navDropdown = document.querySelector(".elementor-nav-menu--dropdown");
+    if (menuToggle && navDropdown) {
+        menuToggle.addEventListener("click", () => {
+            menuToggle.classList.toggle("elementor-active");
+            if (menuToggle.classList.contains("elementor-active")) {
+                navDropdown.style.display = "block";
+                navDropdown.style.visibility = "visible";
+                navDropdown.style.opacity = "1";
+            } else {
+                navDropdown.style.display = "none";
+                navDropdown.style.visibility = "hidden";
+                navDropdown.style.opacity = "0";
+            }
+        });
+    }
+
     if(slider && slides.length > 1) {
         let currentSlide = 0;
         setInterval(() => {
