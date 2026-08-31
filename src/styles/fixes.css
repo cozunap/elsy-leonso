@@ -324,3 +324,16 @@ img, svg, video, iframe, canvas {
 .elementor-shape {
     display: none !important;
 }
+
+/* Force Global Body Typography */
+body, 
+p, 
+li,
+.elementor-text-editor,
+.elementor-widget-text-editor,
+.elementor-heading-title:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 22px !important;
+}
