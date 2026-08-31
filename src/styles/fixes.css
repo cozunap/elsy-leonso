@@ -137,3 +137,113 @@ header.elementor-location-header {
     background-color: #0d1f3c; /* Using the premium navy from global rules */
     transform: translateY(-5px);
 }
+
+/* ==========================================================================
+   PREMIUM ANIMATIONS & SMOOTH TRANSITIONS
+   ========================================================================== */
+
+/* Page Load Fade-in */
+body {
+    animation: fadeInPage 0.8s ease-out forwards;
+}
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Smooth Transitions for Interactive Elements */
+a, .elementor-button, .elementor-social-icon, .elementor-item {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Premium Hover Lift for Buttons */
+.elementor-button:hover, .elementor-button-link:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+    filter: brightness(1.1);
+}
+
+/* Interactive Cards & Image Hover Effects */
+.elementor-widget-image-box, .elementor-widget-icon-box, .elementor-image img {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.elementor-widget-image-box:hover, .elementor-widget-icon-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    z-index: 2;
+    position: relative;
+}
+
+/* Subtle image scale on hover */
+.elementor-image a:hover img {
+    transform: scale(1.02);
+}
+
+/* Links Hover */
+a:not(.elementor-button):hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   GLOBAL RESPONSIVENESS FIXES
+   ========================================================================== */
+
+/* Prevent Horizontal Scroll */
+html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw;
+}
+
+/* Fluid Media */
+img, svg, video, iframe, canvas {
+    max-width: 100% !important;
+    height: auto;
+}
+
+/* Mobile Adjustments */
+@media screen and (max-width: 768px) {
+    /* Fluid Typography for Mobile */
+    h1, .elementor-heading-title h1, .elementor-widget-heading h1.elementor-heading-title {
+        font-size: clamp(2rem, 8vw, 3.5rem) !important;
+        line-height: 1.2 !important;
+    }
+    
+    h2, .elementor-heading-title h2, .elementor-widget-heading h2.elementor-heading-title {
+        font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+        line-height: 1.3 !important;
+    }
+    
+    .elementor-widget-text-editor {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Ensure containers have breathing room */
+    .elementor-section, .e-con, .e-con-inner {
+        padding-left: 5vw !important;
+        padding-right: 5vw !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Fix weird negative margins in Elementor on mobile */
+    .elementor-row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .elementor-column {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    /* Stack elements properly if they are squished */
+    .elementor-icon-list-items.elementor-inline-items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
