@@ -320,12 +320,7 @@ img, svg, video, iframe, canvas {
     background-color: #fff !important;
 }
 
-/* Force Elementor Shape Dividers to be Full-Width */
-.elementor-shape, .e-con-inner > .elementor-shape {
-    width: 100vw !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-}
-.elementor-shape svg {
-    width: calc(100% + 1.3px) !important; /* Fix tiny gaps on edges */
+/* Hide Elementor Shape Dividers Globally */
+.elementor-shape {
+    display: none !important;
 }
