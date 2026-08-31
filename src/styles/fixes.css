@@ -445,3 +445,19 @@ li,
     font-size: 1.2em;
     vertical-align: middle;
 }
+
+/* Fix forms being hidden by scroll animation */
+#custom-form-modal-body .reveal-anim {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    transition: none !important;
+}
+
+/* Ensure text is visible (black) inside the modal */
+#custom-form-modal-body,
+#custom-form-modal-body .elementor-heading-title,
+#custom-form-modal-body .elementor-field-type-html,
+#custom-form-modal-body .elementor-field-option label {
+    color: #222 !important;
+}
