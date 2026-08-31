@@ -84,45 +84,108 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script is:inline>
 document.addEventListener("DOMContentLoaded", function() {
-    // Form Activation Logic (Native Mailto)
-    const forms = document.querySelectorAll('.elementor-form');
-    
-    forms.forEach(form => {
-        // Prevent default submission
+    // 1. Find and hide all popup forms
+    const popupFormIds = ["1523", "1793", "1817", "1907"];
+    const formBlocks = {};
+
+    popupFormIds.forEach(id => {
+        // Find all instances (since they might be duplicated across pages)
+        const inputs = document.querySelectorAll(`input[name="post_id"][value="${id}"]`);
+        inputs.forEach(hiddenInput => {
+            const container = hiddenInput.closest('.e-con-inner');
+            if (container) {
+                formBlocks[id] = container; // Store the last found instance
+                // Hide the main parent section so it doesn't leave an empty gap
+                const parentSection = container.closest('.e-con.e-parent');
+                if (parentSection) {
+                    parentSection.style.display = 'none';
+                }
+            }
+        });
+    });
+
+    // 2. Create the Modal Container
+    const modal = document.createElement('div');
+    modal.className = 'custom-form-modal';
+    modal.innerHTML = `
+        <div class="custom-form-modal-content">
+            <button class="custom-form-modal-close">&times;</button>
+            <div id="custom-form-modal-body"></div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    const modalBody = document.getElementById('custom-form-modal-body');
+    const closeBtn = modal.querySelector('.custom-form-modal-close');
+
+    function closeModal() {
+        modal.classList.remove('active');
+        setTimeout(() => { modal.style.display = 'none'; }, 300);
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // 3. Intercept Elementor popup links
+    document.body.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href*="#elementor-action"]');
+        if (link) {
+            e.preventDefault();
+            const href = decodeURIComponent(link.getAttribute('href'));
+            // Extract base64 settings
+            const settingsMatch = href.match(/settings=(.+)/);
+            if (settingsMatch && settingsMatch[1]) {
+                try {
+                    const settings = JSON.parse(atob(settingsMatch[1]));
+                    const popupId = settings.id;
+                    
+                    if (formBlocks[popupId]) {
+                        // Clear previous content
+                        modalBody.innerHTML = '';
+                        // Clone the form block into the modal
+                        const clonedBlock = formBlocks[popupId].cloneNode(true);
+                        clonedBlock.style.display = 'block';
+                        modalBody.appendChild(clonedBlock);
+                        
+                        // Show modal
+                        modal.style.display = 'flex';
+                        // small delay for transition
+                        setTimeout(() => modal.classList.add('active'), 10);
+                        
+                        // Re-attach form submit logic to the new cloned form!
+                        const clonedForm = clonedBlock.querySelector('.elementor-form');
+                        if (clonedForm) {
+                            attachMailtoLogic(clonedForm);
+                        }
+                    } else {
+                        console.error("Popup form not found for ID:", popupId);
+                    }
+                } catch (err) {
+                    console.error("Error parsing popup settings:", err);
+                }
+            }
+        }
+    });
+
+    // Function to attach mailto logic (reused from before)
+    function attachMailtoLogic(form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Gather all form data
             const formData = new FormData(form);
             let bodyText = "New Form Submission:\n\n";
-            
             for (let [name, value] of formData.entries()) {
-                // Ignore hidden system fields
-                if (name.startsWith('post_id') || name.startsWith('form_id') || name.startsWith('queried_id') || name.startsWith('referer_title') || !value) {
-                    continue;
-                }
-                // Format the name nicely
+                if (name.startsWith('post_id') || name.startsWith('form_id') || name.startsWith('queried_id') || name.startsWith('referer_title') || !value) continue;
                 let cleanName = name.replace('form_fields[', '').replace(']', '').replace('_', ' ');
                 bodyText += `${cleanName.toUpperCase()}: ${value}\n`;
             }
-            
-            // Get form title if available
             let formTitle = "Website Form Submission";
             const heading = form.closest('.e-con-inner').querySelector('.elementor-heading-title');
-            if (heading) {
-                formTitle = heading.innerText.trim();
-            } else if (form.getAttribute('name')) {
-                formTitle = form.getAttribute('name');
-            }
-            
-            // Construct mailto link
+            if (heading) formTitle = heading.innerText.trim();
             const emailTo = "elsyleonso@gmail.com"; 
-            const mailtoLink = `mailto:${emailTo}?subject=${encodeURIComponent(formTitle)}&body=${encodeURIComponent(bodyText)}`;
+            window.location.href = `mailto:${emailTo}?subject=${encodeURIComponent(formTitle)}&body=${encodeURIComponent(bodyText)}`;
             
-            // Trigger email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
             let successMsg = form.querySelector('.form-success-msg');
             if (!successMsg) {
                 successMsg = document.createElement('div');
@@ -134,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 form.appendChild(successMsg);
             }
         });
-    });
+    }
 });
+
 </script>
