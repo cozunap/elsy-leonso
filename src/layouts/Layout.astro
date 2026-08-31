@@ -1,22 +1,61 @@
 ---
 import '../styles/fixes.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Elsy Leonso Insurance, Tag and Title Maryland", 
+  description = "Elsy Leonso Insurance is a reputable insurance provider offering a wide range of coverage solutions including Auto, Home, Commercial, and Life insurance. Known for our customer-centric approach, we provide reliable and tailored insurance plans in College Park, MD."
+} = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<title>Elsy Leonso Insurance, Tag and Title Maryland – Elsy Leonso Insurance is a reputable insurance provider offering a wide range of coverage solutions. Known for its customer-centric approach, Elsy Leonso Insurance strives to provide reliable and tailored insurance plans to meet the diverse needs of individuals and businesses.</title>
-<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<link rel="canonical" href="/">
-<meta name="description" content="Car Insurance Choose from our options and discounts, then get a car insurance quote to see how you'll save! Get a quote! Home Insurance Are you looking to get i">
-<meta property="og:title" content="Elsy Leonso Insurance, Tag and Title Maryland – Elsy Leonso Insurance is a reputable insurance provider offering a wide range of coverage solutions. Known for its customer-centric approach, Elsy Leonso Insurance strives to provide reliable and tailored insurance plans to meet the diverse needs of individuals and businesses.">
+	<title>{title}</title>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="description" content={description}>
+<meta property="og:title" content={title}>
 <meta property="og:type" content="website">
-<meta property="og:description" content="Car Insurance Choose from our options and discounts, then get a car insurance quote to see how you'll save! Get a quote! Home Insurance Are you looking to get i">
-<meta property="og:url" content="/">
-<meta property="og:locale" content="en_CA">
-<meta property="og:site_name" content="Elsy Leonso Insurance, Tag and Title Maryland">
+<meta property="og:description" content={description}>
+<meta property="og:url" content="https://elsyleonso.com/">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Elsy Leonso Insurance">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+
+<!-- AEO / JSON-LD Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  "name": "Elsy Leonso Insurance",
+  "image": "https://elsyleonso.com/assets/uploads/2024/07/InsuraceLogoBlack.png",
+  "url": "https://elsyleonso.com",
+  "telephone": "+1-301-213-4361",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "9651 Baltimore Ave",
+    "addressLocality": "College Park",
+    "addressRegion": "MD",
+    "postalCode": "20740",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 39.0125556,
+    "longitude": -76.9298402
+  },
+  "sameAs": [
+    "https://www.facebook.com/elsyleonso"
+  ]
+}
+</script>
 <link rel="alternate" type="application/rss+xml" title="Elsy Leonso Insurance, Tag and Title Maryland » Feed" href="/feed/">
 <link rel="alternate" type="application/rss+xml" title="Elsy Leonso Insurance, Tag and Title Maryland » Comments Feed" href="/comments/feed/">
 <style id="wp-img-auto-sizes-contain-inline-css">
